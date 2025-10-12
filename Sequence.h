@@ -2,7 +2,19 @@
 #define SEQUENCE_H
 
 
+
+struct Node {
+public:
+    std::string data;
+    Node* prev;
+    Node* next;
+};
+
 class Sequence {
+private:
+    Node* head;
+    Node* tail;
+    size_t sz;
 public:
     Sequence (size_t sz =0);
     Sequence (const Sequence& s);
