@@ -1,7 +1,18 @@
 #ifndef SEQUENCE_H
 #define SEQUENCE_H
 
+class SequenceNode {
+public:
+    SequenceNode* prev;
+    SequenceNode* next;
 
+    std::string item;
+
+    SequenceNode() : next(nullptr), prev(nullptr)
+    {}
+    SequenceNode(std::string item) : prev(nullptr), next(nullptr), item(item)
+    {}
+};
 
 struct Node {
 public:
