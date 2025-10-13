@@ -21,7 +21,14 @@ int main() {
     sequence.push_back("tall");
     sequence.push_back("big");
     cout << sequence << endl;
+    cout << sequence.size() << endl;
 
+    sequence.pop_back();
+    sequence.pop_back();
+    sequence.pop_back();
+
+    cout << sequence.size() << endl;
+    cout << sequence << endl;
 
     return 0;
 }

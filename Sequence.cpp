@@ -41,7 +41,19 @@ void Sequence::push_back(std::string item) {
     sz++;
 }
 
-void Sequence::pop_back() {}
+void Sequence::pop_back() {
+    if (head == nullptr) return;
+
+    Node* temp = tail;
+        if (head == tail) {
+            head = tail = nullptr;
+        }else {
+            tail = tail->prev;
+            tail -> next = nullptr;
+        }
+    delete temp;
+    sz --;
+}
 
 void Sequence::insert(size_t position, std::string item) {}
 
