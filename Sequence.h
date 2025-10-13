@@ -1,5 +1,6 @@
 #ifndef SEQUENCE_H
 #define SEQUENCE_H
+#include <string>
 
 class SequenceNode {
 public:
