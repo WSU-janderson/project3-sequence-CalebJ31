@@ -17,6 +17,7 @@ int main() {
 
 
     Sequence sequence;
+    Sequence seq1;
     sequence.push_back("big");
     sequence.push_back("tall");
     sequence.push_back("big");
@@ -31,6 +32,13 @@ int main() {
     sequence.insert(1,"Raiders");
     cout << sequence.size() << endl;
     cout << sequence << endl;
+    cout << sequence.back() << endl;
+    cout << sequence.front() << endl;
+
+    sequence.clear();
+
+sequence.push_back("big");
+    cout<< sequence.size() << endl;
 
     return 0;
 }

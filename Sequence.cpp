@@ -92,6 +92,9 @@ void Sequence::insert(size_t position, std::string item) {
     sz++;
 }
 std::string Sequence::front() const {
+    if (head==nullptr) {
+        return "???";
+    }
     return head->data;  // Must return something
 }
 
@@ -107,7 +110,15 @@ size_t Sequence::size() const {
     return sz;
 }
 
-void Sequence::clear() {}
+void Sequence::clear() {
+    while(head != nullptr) {
+        Node* temp = head;
+        head = head->next;
+        delete temp;
+    }
+    tail = nullptr;
+    sz = 0;
+}
 
 void Sequence::erase(size_t position) {}
 
