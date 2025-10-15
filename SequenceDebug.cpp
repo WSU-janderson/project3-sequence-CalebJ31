@@ -25,8 +25,10 @@ int main() {
 
     sequence.pop_back();
     sequence.pop_back();
-    sequence.pop_back();
 
+    sequence.insert(4,"Dodgers");
+    sequence.insert(3,"Reds");
+    sequence.insert(1,"Raiders");
     cout << sequence.size() << endl;
     cout << sequence << endl;
 

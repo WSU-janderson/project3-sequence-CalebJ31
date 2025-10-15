@@ -55,8 +55,42 @@ void Sequence::pop_back() {
     sz --;
 }
 
-void Sequence::insert(size_t position, std::string item) {}
+void Sequence::insert(size_t position, std::string item) {
+    if (position == 0) {
+        Node* newNode = new Node(item);
+        newNode->next = head;
 
+        if (head != nullptr) {
+            head->prev = newNode;
+        } else {
+            tail = newNode;
+        }
+        head = newNode;
+        sz++;
+        return;
+    }
+
+    while (sz < position) {
+        push_back("???");
+    }
+
+    if (position >= sz) {
+        push_back(item);
+        return;
+    }
+
+    Node* curr = head;
+    for (size_t i = 0; i < position; i++) {
+        curr = curr->next;
+    }
+
+    Node* newNode = new Node(item);
+    newNode->prev = curr->prev;
+    newNode->next = curr;
+    curr->prev->next = newNode;
+    curr->prev = newNode;
+    sz++;
+}
 std::string Sequence::front() const {
     return head->data;  // Must return something
 }
