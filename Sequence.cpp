@@ -18,7 +18,7 @@ Sequence::Sequence(const Sequence& s) {
 }
 
 Sequence::~Sequence() {
-    // Empty for now
+    clear();
 }
 
 Sequence& Sequence::operator=(const Sequence& s) {
