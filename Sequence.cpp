@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <exception>
 using namespace std;
 
 #include "Sequence.h"
@@ -14,7 +15,15 @@ Sequence::Sequence(size_t sz) {
 }
 
 Sequence::Sequence(const Sequence& s) {
-    // Empty for now
+    head = nullptr;
+    tail = nullptr;
+    sz = 0;
+
+    Node* curr = s.head;
+    while (curr != nullptr) {
+        push_back(curr->data);
+        curr = curr->next;
+    }
 }
 
 Sequence::~Sequence() {
@@ -42,7 +51,9 @@ void Sequence::push_back(std::string item) {
 }
 
 void Sequence::pop_back() {
-    if (head == nullptr) return;
+    if (head == nullptr) {
+        throw exception();
+    }
 
     Node* temp = tail;
         if (head == tail) {
@@ -93,12 +104,15 @@ void Sequence::insert(size_t position, std::string item) {
 }
 std::string Sequence::front() const {
     if (head==nullptr) {
-        return "???";
+        throw exception();
     }
     return head->data;  // Must return something
 }
 
 std::string Sequence::back() const {
+    if (tail == nullptr) {
+        throw exception();
+    }
     return tail->data;  // Must return something
 }
 
@@ -121,7 +135,9 @@ void Sequence::clear() {
 }
 
 void Sequence::erase(size_t position) {
-    if (position >= sz) return;
+    if (position >= sz) {
+        throw exception();
+    }
 
     if (position == 0) {
         Node* temp = head;
@@ -156,6 +172,11 @@ void Sequence::erase(size_t position) {
 }
 
 void Sequence::erase(size_t position, size_t count) {
+
+    if (position >= sz || position + count >sz ) {
+        throw exception();
+    }
+
     for (size_t i = 0; i < count && position < sz; i++) {
         erase(position);
     }

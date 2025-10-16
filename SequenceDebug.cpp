@@ -11,6 +11,7 @@
 
 #include "Sequence.h"
 using namespace std;
+#include <exception>
 
 int main() {
     cout << "Your project is ready to go!" << endl;
@@ -40,5 +41,8 @@ int main() {
     cout << sequence << endl;
     sequence.erase(1,3);
     cout << sequence << endl;
+
+
+
     return 0;
 }
