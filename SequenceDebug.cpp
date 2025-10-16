@@ -35,10 +35,10 @@ int main() {
     cout << sequence.back() << endl;
     cout << sequence.front() << endl;
 
-    sequence.clear();
-
-sequence.push_back("big");
-    cout<< sequence.size() << endl;
-
+    cout <<sequence<<endl;
+    sequence.erase(1);
+    cout << sequence << endl;
+    sequence.erase(1,3);
+    cout << sequence << endl;
     return 0;
 }

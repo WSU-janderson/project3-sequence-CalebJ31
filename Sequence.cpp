@@ -120,9 +120,46 @@ void Sequence::clear() {
     sz = 0;
 }
 
-void Sequence::erase(size_t position) {}
+void Sequence::erase(size_t position) {
+    if (position >= sz) return;
 
-void Sequence::erase(size_t position, size_t count) {}
+    if (position == 0) {
+        Node* temp = head;
+        head = head->next;
+
+        if (head != nullptr) {
+            head->prev = nullptr;
+        } else {
+            tail = nullptr;
+        }
+
+        delete temp;
+        sz--;
+        return;
+    }
+
+    Node* curr = head;
+    for (size_t i = 0; i < position; i++) {
+        curr = curr->next;
+    }
+
+    curr->prev->next = curr->next;
+
+    if (curr->next != nullptr) {
+        curr->next->prev = curr->prev;
+    } else {
+        tail = curr->prev;
+    }
+
+    delete curr;
+    sz--;
+}
+
+void Sequence::erase(size_t position, size_t count) {
+    for (size_t i = 0; i < count && position < sz; i++) {
+        erase(position);
+    }
+}
 
 std::ostream& operator<<(std::ostream& os, const Sequence& s) {
     Node* curr = s.head;
