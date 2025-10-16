@@ -31,11 +31,26 @@ Sequence::~Sequence() {
 }
 
 Sequence& Sequence::operator=(const Sequence& s) {
-    return *this;  // Must return something
+    if (this != &s) {
+        clear();
+        Node* curr = s.head;
+        while (curr != nullptr) {
+            push_back(curr->data);
+            curr = curr->next;
+        }
+    }
+    return *this;
 }
 
 std::string& Sequence::operator[](size_t position) {
-    return head->data;  // Must return something (placeholder)
+    if (position >= sz) {
+        throw exception();
+    }
+    Node* curr = head;
+    for (size_t i = 0; i < position; i++) {
+        curr = curr->next;
+    }
+    return curr->data;
 }
 
 void Sequence::push_back(std::string item) {
@@ -67,6 +82,10 @@ void Sequence::pop_back() {
 }
 
 void Sequence::insert(size_t position, std::string item) {
+    if (position > sz) {
+        throw exception();
+    }
+
     if (position == 0) {
         Node* newNode = new Node(item);
         newNode->next = head;
@@ -81,11 +100,7 @@ void Sequence::insert(size_t position, std::string item) {
         return;
     }
 
-    while (sz < position) {
-        push_back("???");
-    }
-
-    if (position >= sz) {
+    if (position == sz) {
         push_back(item);
         return;
     }
@@ -106,14 +121,14 @@ std::string Sequence::front() const {
     if (head==nullptr) {
         throw exception();
     }
-    return head->data;  // Must return something
+    return head->data;
 }
 
 std::string Sequence::back() const {
     if (tail == nullptr) {
         throw exception();
     }
-    return tail->data;  // Must return something
+    return tail->data;
 }
 
 bool Sequence::empty() const {
